@@ -1,113 +1,87 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --border-color: #000000;
+    --hover-bg: #f0f0f0;
+    --font-main: Georgia, 'Times New Roman', Times, serif;
+}
+
+body.darkMode {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --border-color: #ffffff;
+    --hover-bg: #222222;
+}
+
 body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-width: 320px;
     min-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    transition: background-color 0.3s ease, color 0.3s ease;
     align-items: center;
-    background-color: #ffffff;
 }
 
-body.darkMode {
-    background-color: #000000;
-}
-
-body.darkMode.mouseIsMoving {
-    color: white;
-}
-
-body.darkMode.mouseIsMoving .button {
-    outline: white solid 0.1em;
-}
-
-body.darkMode.mouseIsMoving .button:hover {
-    outline: white solid 0.15em;
-}
-
-h1 {
-    font-size: 29px;
-    line-height: 39px;
-    font-weight: 300;
-}
-
-.title {
-    margin-bottom: 40px;
-}
-
-.buttons {
+#app {
+    flex: 1;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start; 
+}
+
+.title {
+    margin-top: 40px;
+    font-size: 30px;
+    font-weight: 300;
+    text-transform: lowercase;
+    cursor: pointer;
+    text-align: center;
+}
+
+.buttons {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
 }
 
 .button {
     width: 100%;
-    max-width: 155px;
-    padding: 0.5em;
-    outline: black solid 0.1em;
-    border-radius: 0.1em;
-    margin: 0.5em 0;
-    box-sizing: border-box;
+    max-width: 180px;
+    padding: 0.8em;
+    border: 0.1em solid var(--border-color);
+    border-radius: 4px;
     text-align: center;
+    cursor: pointer;
+    text-transform: lowercase;
+    transition: background 0.2s, transform 0.1s;
+    user-select: none;
 }
 
 .button:hover {
-    cursor: pointer;
-    outline: black solid 0.15em;
+    background-color: var(--hover);
 }
 
-.footer {
-    text-align: center;
-    margin: 20px 0;
+.title, .button, .footer {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
 }
 
-#app {
-    max-width: 1280px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+body.darkMode:not(.mouseIsMoving) .title,
+body.darkMode:not(.mouseIsMoving) .button,
+body.darkMode:not(.mouseIsMoving) .footer {
+    opacity: 0;
+    pointer-events: none;
 }
 
-/*
-body {
-    background-color: #000000;
-    cursor: none;
-    height: 100vh;
-    margin: 0;
+body:not(.darkMode) .title,
+body:not(.darkMode) .button,
+body:not(.darkMode) .footer {
+    opacity: 1 !important;
 }
-
-h1 {
-    font-size: 4em;
-}
-
-p {
-    font-size: 1em;
-}
-
-.text {
-    color: #ffffff;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    animation: fadeOut 2s forwards;
-    animation-delay: 7.5s;
-    position: absolute;
-}
-
-.time {
-    color: #ffffffff;
-    font-family: Arial, Helvetica, sans-serif;
-    height: 100vh;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-}
-
-@keyframes fadeOut {
-    from {opacity: 1;}
-    to {opacity: 0;}
-}
-
-*/
